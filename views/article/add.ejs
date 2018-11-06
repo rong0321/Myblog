@@ -8,9 +8,10 @@
     <h1>发表文章页</h1>
     <hr>
     <form id="form">
+        <input type="hidden" value="<%= user.id%>" name="author_id">
         <div class="form-group">
             <label>文章标题:</label>
-            <input type="text" name="title" class="form-control">
+            <input type="text" name="title" class="form-control" required>
         </div>
 
         <div class="form-group">
@@ -28,6 +29,28 @@
     $(function(){
 
         var mditor =  Mditor.fromTextarea(document.getElementById('editor'));
+
+        $('#form').on('submit',function(){
+
+            $.ajax({
+                url:'/article/add',
+                type:'post',
+                data:$(this).serialize(),
+                dataType:'json',
+                success:function(res){
+                    if(res.status === 200){
+                        location.href = '/article/info/' + res.articleId
+                    }
+                },
+                error:function(res){
+                    alert(res.responseJSON.msg)
+                }
+            })
+
+            return false
+        })
+
+
 
 
     })
