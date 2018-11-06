@@ -61,6 +61,10 @@
               return alert(result.msg)
             }
             location.href = '/'
+          },
+          error:function(res){
+            alert(res.responseJSON.msg);
+            return
           }
         })
       })

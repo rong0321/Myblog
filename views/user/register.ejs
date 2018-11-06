@@ -60,9 +60,12 @@
             if(res.status == 200){
               alert("注册成功! ");
               location.href = "/login"
-            }else{
-              alert(res.msg)
             }
+          },
+          error:function(res){
+            // console.log(res)
+            alert(res.responseJSON.msg);
+            return
           }
         })
 

@@ -38,6 +38,7 @@ app.get('/login',(req,res) => {
     res.render('./user/login.ejs',{})
 })
 
+//注册功能
 app.post('/register',(req,res) => {
     // console.log('123')
     // console.log(req.body);
@@ -50,7 +51,7 @@ app.post('/register',(req,res) => {
     conn.query(sql1,user.username,(err,result) => {
         if(err) return res.status(401).send({status:401,msg:'用户名查重失败'})
         // console.log(result);
-        if(result.length != 0) return res.send({status:402,msg:'用户名重复'})
+        if(result.length != 0) return res.status(402).send({status:402,msg:'用户名重复'})
         const sql2 = "insert into users set ?"
         user.ctime = moment().format('YYYY-MM-DD HH:mm:ss')
         conn.query(sql2,user,(err,result) => {
@@ -60,6 +61,17 @@ app.post('/register',(req,res) => {
     })
 
     // res.send({status:200,msg:'注册用户成功! '})
+})
+
+//登录功能
+app.post('/login',(req,res) => {
+    const user = req.body
+    const sql = "select * from users where username = ? and password = ?"
+    conn.query(sql,[user.username,user.password],(err,result) => {
+        if(err) return res.status(500).send({status:500,msg:'服务器响应失败'})
+        if(result.length != 1) return res.status(501).send({status:501,msg:'用户名或密码错误!'})
+        res.send({status:200,msg:'登陆成功'})
+    })
 })
 
 
