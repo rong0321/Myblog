@@ -8,5 +8,7 @@ router.post('/article/add',ctrl.handlePostArticleAdd)
 
 router.get('/article/info/:id',ctrl.handleGetArticleInfo)
 
+router.get('/article/edit/:id',ctrl.handleGetArticleEdit)
 
+router.post('/article/edit',ctrl.handlePostArticleEdit)
 module.exports = router
