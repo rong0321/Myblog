@@ -1,7 +1,14 @@
 <%- include('../layout/header.ejs') %>
 
 <div class="container">
-    <h1>文章详情页</h1>
+    <h1>
+        <%= article.title%>
+        <% if(isLogin && user.id == article.author_id){ %>
+        <a href="/article/edit/<%= article.id%>" class="btn btn-info pull-right">编辑</a>
+        <% } %>
+    </h1>
+    <hr>
+    <div><%- article.content %></div>
 </div>
 
 
