@@ -18,7 +18,7 @@ module.exports = {
                     articles: [[]]
                 })
             }
-            console.log(result)
+            // console.log(result)
             //render方法必须要先配置模板引擎,此处相对于设置的模板引擎的目录
             const totalPage = Math.ceil(result[1][0].count / pageSize)
 
