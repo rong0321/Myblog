@@ -18,11 +18,11 @@ node(express框架)+mysql+bootstrap的博客demo
 
 
 
-	node app.js
+		node app.js
 	
-	//安装有nodemon的可用nodemon运行
+		//安装有nodemon的可用nodemon运行
 	
-	nodemon app.js
+		nodemon app.js
 
 
 ## 完成功能
